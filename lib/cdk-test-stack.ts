@@ -22,6 +22,6 @@ export class CdkTestStack extends cdk.Stack {
       env: { account: '723455457584', region: 'eu-west-2' }
     }));
 
-    testingStage.addPost(new ManualApprovalStep('approval'))
+    testingStage.addPost(new ManualApprovalStep('approval'));
   }
 }
