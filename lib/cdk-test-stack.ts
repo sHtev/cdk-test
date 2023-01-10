@@ -17,7 +17,7 @@ export class CdkTestStack extends cdk.Stack {
       })
     });
 
-    pipeline.addStage(new CdkTestAppStage(this, "test". {
+    pipeline.addStage(new CdkTestAppStage(this, "test", {
       env: { account: '723455457584', region: 'eu-west-2' }
     }));
   }
