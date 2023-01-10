@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
+import { CodePipeline, CodePipelineSource, ManualApprovalStep, ShellStep } from 'aws-cdk-lib/pipelines';
 import { CdkTestAppStage } from './cdk-test-app-stage';
 
 export class CdkTestStack extends cdk.Stack {
@@ -18,8 +18,10 @@ export class CdkTestStack extends cdk.Stack {
       })
     });
 
-    pipeline.addStage(new CdkTestAppStage(this, "test", {
+    const testingStage = pipeline.addStage(new CdkTestAppStage(this, "test", {
       env: { account: '723455457584', region: 'eu-west-2' }
     }));
+
+    testingStage.addPost(new ManualApprovalStep('approval'))
   }
 }
