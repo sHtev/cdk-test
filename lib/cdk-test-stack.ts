@@ -13,6 +13,7 @@ export class CdkTestStack extends cdk.Stack {
         input: CodePipelineSource.connection('sHtev/cdk-test', 'main', {
           connectionArn: 'arn:aws:codestar-connections:eu-west-2:723455457584:connection/746bb8dc-66fc-490d-880f-520284ce8550',
         }),
+        installCommands: ['npm i -g npm@latest'],
         commands: ['npm ci', 'npm run build', 'npx cdk synth']
       })
     });
